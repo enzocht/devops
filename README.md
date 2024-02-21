@@ -38,4 +38,5 @@ Ensuite je crée mon image en utilisant la commande : docker build -t image .
 
 Je lance l'image avec : docker run -d -p 8080:80 --name apache image
 
+On peut constater que cela est plus simple que ce soit pour la configuration et l'éxécution.
 
