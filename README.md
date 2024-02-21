@@ -1,4 +1,4 @@
-Docker TP - Enzo Charlot
+# Docker TP - Enzo Charlot
 
 Question 3 : 
 
@@ -18,25 +18,38 @@ docker cp /home/enzo/docker/html stupefied_carson:/usr/local/apache2/htdocs/
 
 Cela à fonctionné, la question 3 est terminé.
 
+----------------------------------------------------------------------------
+
 Question 4 : 
 
 Je crée mon dockerfile : 
 
-# Utilisation de l'image officielle d'Apache
 FROM httpd:latest
-
-# Exposer le port 80
 EXPOSE 80
-
-# Copier les fichiers de configuration personnalisés dans le conteneur
 COPY ./html /usr/local/apache2/htdocs/
-
-# Commande pour démarrer Apache
 CMD ["httpd-foreground"]
 
-Ensuite je crée mon image en utilisant la commande : docker build -t image .
+Ensuite je crée mon image en utilisant la commande : docker build -t image 
 
 Je lance l'image avec : docker run -d -p 8080:80 --name apache image
 
 On peut constater que cela est plus simple que ce soit pour la configuration et l'éxécution.
+
+----------------------------------------------------------------------------
+
+Question 5 : 
+
+Je récupère les paquet avec : docker pull
+
+C'est OK.
+
+----------------------------------------------------------------------------
+
+Question 6 : 
+
+docker run est utile pour lancer rapidement un conteneur unique à partir d'une image. Il est plus adapté pour les cas d'utilisation simples et ponctuels
+docker-compose est idéal pour les applications composées de plusieurs conteneurs interconnectés. Il permet de définir les configurations une fois et de les réutiliser facilement, ce qui facilite la gestion des applications complexes
+
+En résumé, si vous avez besoin de lancer une seule instance d'un conteneur, docker run est l'outil à utiliser. Si vous avez une application composée de plusieurs conteneurs, docker-compose est le choix approprié
+
 
