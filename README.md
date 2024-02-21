@@ -17,3 +17,25 @@ docker run -p 8080:80 -d httpd
 docker cp /home/enzo/docker/html stupefied_carson:/usr/local/apache2/htdocs/
 
 Cela à fonctionné, la question 3 est terminé.
+
+Question 4 : 
+
+Je crée mon dockerfile : 
+
+# Utilisation de l'image officielle d'Apache
+FROM httpd:latest
+
+# Exposer le port 80
+EXPOSE 80
+
+# Copier les fichiers de configuration personnalisés dans le conteneur
+COPY ./html /usr/local/apache2/htdocs/
+
+# Commande pour démarrer Apache
+CMD ["httpd-foreground"]
+
+Ensuite je crée mon image en utilisant la commande : docker build -t image .
+
+Je lance l'image avec : docker run -d -p 8080:80 --name apache image
+
+
