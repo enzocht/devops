@@ -24,10 +24,10 @@ Question 4 :
 
 Je crée mon dockerfile : 
 
-FROM httpd:latest
-EXPOSE 80
-COPY ./html /usr/local/apache2/htdocs/
-CMD ["httpd-foreground"]
+ FROM httpd:latest
+ EXPOSE 80
+ COPY ./html /usr/local/apache2/htdocs/
+ CMD ["httpd-foreground"]
 
 Ensuite je crée mon image en utilisant la commande : docker build -t image 
 
@@ -51,5 +51,32 @@ docker run est utile pour lancer rapidement un conteneur unique à partir d'une 
 docker-compose est idéal pour les applications composées de plusieurs conteneurs interconnectés. Il permet de définir les configurations une fois et de les réutiliser facilement, ce qui facilite la gestion des applications complexes
 
 En résumé, si vous avez besoin de lancer une seule instance d'un conteneur, docker run est l'outil à utiliser. Si vous avez une application composée de plusieurs conteneurs, docker-compose est le choix approprié
+
+Le script YAML : 
+
+version: '3.8'
+ 
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+ 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: my_secret_password
+
+Et la commande pour l'éxécuter : docker-compose up -d
+
+
 
 
